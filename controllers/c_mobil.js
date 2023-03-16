@@ -8,9 +8,9 @@ export const getMobil = (req, res) => {
 };
 
 export const postMobil = (req, res) => {
-  const { id, nama } = req.body;
+  const { nama } = req.body;
 
-  let index = mobil.findIndex((i) => i.id === id || i.nama === nama);
+  let index = mobil.findIndex((i) => i.nama === nama);
   const mobilId = mobil.map((i) => i.id);
   const newId = Math.max(...mobilId) + 1;
   if (index === -1) {
