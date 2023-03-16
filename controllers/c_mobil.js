@@ -11,9 +11,10 @@ export const postMobil = (req, res) => {
   const { id, nama } = req.body;
 
   let index = mobil.findIndex((i) => i.id === id || i.nama === nama);
-
+  const mobilId = mobil.map((i) => i.id);
+  const newId = Math.max(...mobilId) + 1;
   if (index === -1) {
-    mobil.push(req.body);
+    mobil.push({ id: newId, ...req.body });
 
     res.json({
       status: 'ok',
@@ -28,9 +29,11 @@ export const postMobil = (req, res) => {
 };
 
 export const putMobil = (req, res) => {
-  const { id } = req.body;
+  const { id, nama, merk, harga } = req.body;
 
   let index = mobil.findIndex((i) => i.id === id);
+  const mobilId = mobil.map((i) => i.id);
+  const newId = Math.max(...mobilId) + 1;
   if (index !== -1) {
     mobil.splice(index, 1, req.body);
     res.json({
@@ -38,7 +41,12 @@ export const putMobil = (req, res) => {
       values: mobil,
     });
   } else {
-    mobil.push(req.body);
+    mobil.push({
+      id: newId,
+      nama: nama,
+      merk: merk,
+      harga: harga,
+    });
     res.json({
       status: 'ok',
       message: 'Data mobil berhasil di update',
