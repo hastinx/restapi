@@ -73,7 +73,6 @@ export const action = {
     postExpense(data) {
         console.log('======================================================================== POST ========================================================================')
         let found = expense.find(i => (i.name).toLowerCase() === data.name.toLowerCase())
-        console.log(found)
         const newId = expense.length + 1
         const newExpense = {
             id: newId,
@@ -98,20 +97,18 @@ export const action = {
         console.log('======================================================================== PATCH ========================================================================')
         let index = expense.findIndex((i) => i.id === id);
         let found = expense.find(i => i.id === id)
-        if (name !== undefined) found.name = name;
-        if (nominal !== undefined) found.nominal = nominal;
-        if (category !== undefined) found.category = category;
-        found.updated_at = formatDate(Date.now())
-
-        expense.splice(index, 1, found)
-
-
         if (index === -1) {
             return {
                 status: 404,
                 message: "Data not found"
             }
         } else {
+            if (name !== undefined) found.name = name;
+            if (nominal !== undefined) found.nominal = nominal;
+            if (category !== undefined) found.category = category;
+            found.updated_at = formatDate(Date.now())
+
+            expense.splice(index, 1, found)
             updateExpense(JSON.stringify(expense))
             return {
                 status: 201,
@@ -126,7 +123,6 @@ export const action = {
         let index = deleteExpense.findIndex((i) => i.id === id);
 
         deleteExpense.splice(index, 1)
-        console.log(deleteExpense)
 
         if (index === -1) {
             return {

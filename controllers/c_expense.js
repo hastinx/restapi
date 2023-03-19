@@ -20,6 +20,7 @@ export const postExpense = (req, res) => {
 
 export const editExpense = (req, res) => {
     const { id, name, nominal, category } = req.body
+
     res.json(action.editExpense(id, name, nominal, category))
 }
 
