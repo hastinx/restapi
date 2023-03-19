@@ -9,5 +9,6 @@ app.use(express.json());
 app.use('/api', router)
 
 app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}...`);
+  console.log('================================================== SERVER RUNNING ==================================================');
+  console.log('======================================== http://localhost:9000/api/expense =========================================');
 });
