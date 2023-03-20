@@ -1,8 +1,6 @@
 import fs from 'fs'
 
-const dataExpense = fs.readFileSync("./expense.json", "utf-8", (err, jsonString) => {
-    return jsonString
-})
+const dataExpense = fs.readFileSync("./expense.json")
 
 export const getDataExpense = dataExpense
 
