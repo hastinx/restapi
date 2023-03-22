@@ -15,6 +15,7 @@ export const getExpense = (req, res) => {
 }
 
 export const postExpense = (req, res) => {
+
     res.json(action.postExpense(req.body))
 }
 
